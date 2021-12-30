@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Dashboard') )
+@section('title',  __('Manuscripts List')  )
 @section('content')
     @include('layouts.headers.cards')
     
@@ -19,7 +19,7 @@
                          @endif
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="text-uppercase mb-0">{{ __("My Active Manuscripts") }}</h2>
+                                <h2 class="text-uppercase mb-0">{{ __("Manuscripts") }}  @if($status !='All') : {{ $status }} @endif</h2>
                             </div>
                             <div class="col">
                                 
@@ -140,9 +140,11 @@
                                                     @if($manuscript->status=="Soumission")
                                                     <a class="dropdown-item" href="{{ route('manuscript.edit', ['manuscriptId' => $manuscript->id]) }}">Modifier</a>
                                                     @else
-                                                     <a class="dropdown-item" href="{{ route('visualize', ['manuscriptId' => $manuscript->id]) }}">Visualiser</a>
+                                                     <a class="dropdown-item" href="{{ route('manuscript.processing', ['manuscriptId' => $manuscript->id]) }}">Visualiser</a>
                                                      @endif
-        <a class="dropdown-item" data-toggle="modal" data-target="#modal-default-{{ $manuscript->id }}" href="{{ route('manuscript.delete', ['manuscriptId' => $manuscript->id]) }}">Supprimer</a>
+                                                     @if($manuscript->status=="En cours de traitement")
+                                                    <a class="dropdown-item" href="{{ route('authors.notify', ['manuscriptId' => $manuscript->id]) }}">Email aux auteurs</a>
+                                                    @endif
                                                                                              </div>
                                             </div>
                                         </td>
@@ -153,12 +155,13 @@
                                 </tbody>
                             </table>
                          </div>
+						 <?php echo $manuscripts->links('pagination::bootstrap-4'); ?>
                         </div>
                         
                     </div>
                     
                 </div>
-                {{ $manuscripts->links() }}
+
             </div>
            
         </div>
@@ -169,10 +172,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">{{ __('Statistics Domains') }}</h3>
+                                <h3 class="mb-0">Statistiques Domaines</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary">{{ __('View All') }}</a>
+                                <a href="#!" class="btn btn-sm btn-primary">Voir Tout</a>
                             </div>
                         </div>
                     </div>
@@ -181,16 +184,16 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Domains') }}</th>
-                                    <th scope="col">{{ __('Submitted') }}</th>
-                                    <th scope="col">{{ __('ACCEPTED') }}</th>
-                                    <th scope="col">{{ __('Publication rate') }}</th>
+                                    <th scope="col">Domaines</th>
+                                    <th scope="col">Soumis</th>
+                                    <th scope="col">Acceptés</th>
+                                    <th scope="col">Taux Publication</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Biostatistics') }}
+                                        Biostatistique
                                     </th>
                                     <td>
                                         4,569
@@ -204,7 +207,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Obstetric gynecology') }} 
+                                      Gynécologie & Obstétrique 
                                     </th>
                                     <td>
                                         3,985
@@ -218,7 +221,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Diagnosis & Radiology') }} 
+                                        Diagnostique & Radiologie
                                     </th>
                                     <td>
                                         3,513
@@ -232,7 +235,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Medicine') }} 
+                                        Médecine
                                     </th>
                                     <td>
                                         2,050
@@ -246,7 +249,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Plastic surgery') }} 
+                                        Chirurgie Plastique
                                     </th>
                                     <td>
                                         1,795
@@ -268,10 +271,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0"> {{ __('Domains') }}</h3>
+                                <h3 class="mb-0">Domaines</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="#!" class="btn btn-sm btn-primary"> {{ __('View All') }}</a>
+                                <a href="#!" class="btn btn-sm btn-primary">Voir Tout</a>
                             </div>
                         </div>
                     </div>
@@ -280,15 +283,15 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col"> {{ __('Domains') }}</th>
-                                    <th scope="col"> {{ __('Articles') }}</th>
+                                    <th scope="col">Domaines</th>
+                                    <th scope="col">Articles</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Epidemiology') }}
+                                        Épidémiologie
                                     </th>
                                     <td>
                                         1,480
@@ -306,7 +309,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Medicine') }}
+                                        Médecine
                                     </th>
                                     <td>
                                         5,480
@@ -324,7 +327,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Pediatrics') }}
+                                        Pédiatrie
                                     </th>
                                     <td>
                                         4,807
@@ -342,7 +345,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Neurology') }}
+                                        Neurologie
                                     </th>
                                     <td>
                                         3,678
@@ -360,7 +363,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                    {{ __('Surgery') }}
+                                        Chirurgie
                                     </th>
                                     <td>
                                         2,645
@@ -435,13 +438,12 @@
                  <select class="form-control"  title="Choisir un status"  name='status'>
                         <option value="Sousmission" selected>{{ __('Soumission') }}</option>
                         <option value="En cours de traitement">{{ __('En cours de traitement') }}</option>
-                     <option value="En Relecture">{{ __('En Relecture') }}</option>
-                     <option value="En attente de l'auteur">{{ __("En attente de l'auteur") }}</option>
-                     <option value="En deuxième relecture">{{ __('En deuxième relecture') }}</option>
-                     <option value="Accepté">{{ __('Accepté') }}</option>
-                     <option value="Rejeté">{{ __('Rejeté') }}</option>
-                     <option value="En cours de publication">{{ __('En cours de publication') }}</option>
-                     <option value="Publiée">{{ __('Publiée') }}</option>
+                     <option value="En cours de traitement">{{ __('En Relecture') }}</option>
+                     <option value="En cours de traitement">{{ __("En attente de l'auteur") }}</option>
+                     <option value="En cours de traitement">{{ __('En deuxième relecture') }}</option>
+                     <option value="En cours de traitement">{{ __('Réponse finale') }}</option>
+                     <option value="En cours de traitement">{{ __('En cours de publication') }}</option>
+                     <option value="En cours de traitement">{{ __('Publiée') }}</option>
                 </select>
                 <div class="text-center">
                                                     

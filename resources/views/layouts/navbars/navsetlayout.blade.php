@@ -25,36 +25,7 @@
             </div>
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('homepage') }}">
-                        <i class="fa fa-home"></i>
-                        <span class="nav-link-inner--text">{{ __('Home') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('home') }}">
-                        <i class="ni ni-planet"></i>
-                        <span class="nav-link-inner--text">{{ __('Dashboard') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('register') }}">
-                        <i class="ni ni-circle-08"></i>
-                        <span class="nav-link-inner--text">{{ __('Register') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('login') }}">
-                        <i class="ni ni-key-25"></i>
-                        <span class="nav-link-inner--text">{{ __('Login') }}</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('manuscript.create') }}">
-                        <i class="ni ni-single-02"></i>
-                        <span class="nav-link-inner--text">{{ __('Submit an article') }}</span>
-                    </a>
-                </li>
+             
                  <li class="nav-item">
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -75,6 +46,49 @@
                     </ul>
                 </li>
             </ul>
+			
+			 <!-- User -->
+        <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <li class="nav-item dropdown">
+                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="media align-items-center">
+                        <span class="avatar avatar-sm rounded-circle">
+                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-2-800x800.jpg">
+                        </span>
+                        <div class="media-body ml-2 d-none d-lg-block">
+                            <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                    <div class=" dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
+                    </div>
+                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                        <i class="ni ni-single-02"></i>
+                        <span>{{ __('My profil') }}</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span>{{ __('Settings') }}</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="ni ni-calendar-grid-58"></i>
+                        <span>{{ __('Activities') }}</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="ni ni-support-16"></i>
+                        <span>{{ __('Support') }}</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <i class="ni ni-user-run"></i>
+                        <span>{{ __('Logout') }}</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
         </div>
     </div>
 </nav>
