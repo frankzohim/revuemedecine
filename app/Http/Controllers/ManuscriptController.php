@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 use DB;
 use Session;
-use App\Manuscripts;
-use App\SpecialitySub;
-use App\ManuscriptsAuthors;
-use App\ManuscriptsFigures;
-use App\ManuscriptsSpecialities;
+use App\Models\Manuscripts;
+use App\Models\SpecialitySub;
+use App\Models\ManuscriptsAuthors;
+use App\Models\ManuscriptsFigures;
+use App\Models\ManuscriptsSpecialities;
 use App\Mail\Manuscript;
 use App\Mail\GeneralMail;
 use Illuminate\Support\Facades\DB as FacadesDB;
@@ -119,6 +119,7 @@ class ManuscriptController extends Controller
  
     public function save(Request $request)
     {
+         dd('here');
         //dd($request->specialityselected);
         $validatedData = $request->validate([
             'type' => ['required', 'string'],
@@ -131,8 +132,8 @@ class ManuscriptController extends Controller
             'numbers_of_authors' => ['required', 'integer'],
             'numbers_of_figures' => ['required', 'integer'],
          ]);
-        
-        $manuscript = new \App\Manuscripts;
+         dd('here');
+        $manuscript = new \App\Models\Manuscripts;
         $manuscript->title = $request->title;
         $manuscript->type = $request->type;
         $manuscript->language = $request->language;
@@ -144,7 +145,7 @@ class ManuscriptController extends Controller
         $manuscript->user_id = auth()->user()->id;
         $manuscript->country_id = $request->country;
         $manuscript->achievement = 25;
-        
+        dd('here');
         
         if($manuscript->save())
             {

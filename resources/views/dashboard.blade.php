@@ -158,7 +158,10 @@
                     </div>
                     
                 </div>
-                {{ $manuscripts->links() }}
+                {{-- Pagination --}}
+                <div class="d-flex justify-content-center">
+                    {!! $manuscripts->links() !!}
+                </div>
             </div>
            
         </div>
