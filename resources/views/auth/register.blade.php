@@ -1,5 +1,5 @@
 @extends('layouts.app', ['class' => 'bg-default'])
-
+@section('title',  __('Create new account') )
 @section('content')
     @include('layouts.headers.guest')
 
@@ -27,11 +27,32 @@
                         </div>
                         <form role="form" method="POST" action="{{ route('register') }}">
                             @csrf
-
+                            
+                            <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                                    </div>
+                                    <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." name='title'>
+                                        <option disabled selected>{{ __('Choose your title') }}</option>
+                                        <option value="Dr">Dr</option>
+                                        <option value="Mlle">Mlle</option>
+                                        <option value="Mme">Mme</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Pr">Pr</option>
+                                     </select>
+                                </div>
+                                @if ($errors->has('title'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                        <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                                     </div>
                                     <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
                                 </div>
@@ -59,7 +80,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" type="password" name="password" required>
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" type="password" name="password" 
+                                           value="{{ old('password') }}" required>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -75,17 +97,20 @@
                                     <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required>
                                 </div>
                             </div>
-                            <div class="text-muted font-italic">
-                                <small>{{ __('password strength') }}: <span class="text-success font-weight-700">{{ __('strong') }}strong</span></small>
-                            </div>
+                            
                             <div class="row my-4">
                                 <div class="col-12">
                                     <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                                        <input class="custom-control-input" name="customCheckRegister" id="customCheckRegister" type="checkbox">
                                         <label class="custom-control-label" for="customCheckRegister">
-                                            <span class="text-muted">{{ __('I agree with the') }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
+                                            <span class="text-muted">{{ __("I agree with the") }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
                                         </label>
                                     </div>
+                                    @if ($errors->has('customCheckRegister'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('customCheckRegister') }}</strong>
+                                    </span>
+                                @endif
                                 </div>
                             </div>
                             <div class="text-center">

@@ -1,5 +1,5 @@
 @extends('layouts.app', ['class' => 'bg-default'])
-
+@section('title',  __('Password reset') )
 @section('content')
     @include('layouts.headers.guest')
     

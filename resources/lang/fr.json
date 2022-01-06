@@ -182,6 +182,9 @@
 	"In Submission": "En Soumission",
 	"Added Authors": "Auteurs Ajoutés",
     "Arrays": "Tableaux",
-    "Sign in with": "Se connecter avec"
+    "Sign in with": "Se connecter avec",
+    "Password reset": "Réinitialisation du mot de passe",
+    "Sign up with": "S'inscrire avec",
+    "Or sign up with credentials": "Ou inscrivez-vous avec des identifiants"
     
 }
