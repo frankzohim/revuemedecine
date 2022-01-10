@@ -132,7 +132,7 @@ class ManuscriptController extends Controller
             'numbers_of_authors' => ['required', 'integer'],
             'numbers_of_figures' => ['required', 'integer'],
          ]);
-         dd('here');
+         dd('here1');
         $manuscript = new \App\Models\Manuscripts;
         $manuscript->title = $request->title;
         $manuscript->type = $request->type;
